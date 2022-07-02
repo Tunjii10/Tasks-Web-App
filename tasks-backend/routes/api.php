@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// user routes
+Route::post('/user/new', [UserController::class, 'store']);
+
+Route::post('/user/login', [UserController::class, 'login']);
+
+Route::get('/user/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+
+Route::delete('/user/delete/{user}', [UserController::class, 'destroy'])->middleware('auth:sanctum');
+
+
+// tasks routes
+Route::post('/tasks/new', [TaskController::class, 'store'])->middleware('auth:sanctum');
+
+Route::put('/tasks/{task}', [TaskController::class, 'update'])->middleware('auth:sanctum');
+
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('/tasks/{task}', [TaskController::class, 'show'])->middleware('auth:sanctum');
+
+Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth:sanctum');
