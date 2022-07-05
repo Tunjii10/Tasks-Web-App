@@ -13,13 +13,13 @@ class CreateTaskTable extends Migration
      */
     public function up()
     {
-        Schema::create('task', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->string("title");
-            $table->string("description");
-            $table->string("comment")->nullable();
+            $table->text("description");
+            $table->text("comment")->nullable();
             $table->enum("status", ['todo', 'done'])->default('todo');
             $table->timestamp("planned_stop_date")->nullable();
             $table->timestamp("actual_stop_date")->nullable();
@@ -33,6 +33,6 @@ class CreateTaskTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task');
+        Schema::dropIfExists('tasks');
     }
 }
