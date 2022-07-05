@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 
 class TaskController extends Controller
 {
-    //
+    // create task
     public function store(Request $request)
     {
         try {
@@ -42,6 +42,8 @@ class TaskController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    // edit task
     public function update(Request $request, task $task)
     {
         try {
@@ -73,6 +75,8 @@ class TaskController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    // delete task
     public function destroy(task $task)
     {
         try {
@@ -84,23 +88,14 @@ class TaskController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    public function show(Request $request, task $task)
+
+    // fetch and show single task
+    public function show(task $task)
     {
         try {
             return response()->json([
                 'message' => "task found",
                 'result' => $task
-            ], 200);
-        } catch (Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-    public function index(Request $request)
-    {
-        try {
-            return response()->json([
-                'message' => "task found",
-                // 'result' => auth()->user()->tasks()->get()
             ], 200);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

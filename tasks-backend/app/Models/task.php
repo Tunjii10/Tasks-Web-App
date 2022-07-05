@@ -20,6 +20,7 @@ class task extends Model
         'actual_stop_date'
     ];
 
+    // relationship with t=user
     public function user()
     {
         return $this->belongsTo(User::class);

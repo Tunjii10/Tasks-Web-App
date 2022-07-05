@@ -35,7 +35,8 @@ class UserController extends Controller
 
             return response()->json([
                 'access_token' => $token,
-                'message' => "user created successfully"
+                'message' => "user created successfully",
+                'results' => $user
             ], 200);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -63,6 +64,7 @@ class UserController extends Controller
             return response()->json([
                 'message' => "successfully logged in",
                 'access_token' => $token,
+                'results' => $user
             ], 200);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -101,7 +103,9 @@ class UserController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    public function index(Request $request, User $user)
+
+    // show users tasks
+    public function index()
     {
         try {
             $id = auth()->user()->id;

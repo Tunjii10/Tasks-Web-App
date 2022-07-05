@@ -23,8 +23,9 @@ Route::post('/user/login', [UserController::class, 'login']);
 
 Route::get('/user/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::delete('/user/delete/{user}', [UserController::class, 'destroy']);
+Route::delete('/user/delete/{user}', [UserController::class, 'destroy'])->middleware('auth:sanctum');
 
+Route::get('/user/tasks', [UserController::class, 'index'])->middleware('auth:sanctum');
 
 // tasks routes
 Route::post('/tasks/new', [TaskController::class, 'store'])->middleware('auth:sanctum');
@@ -34,5 +35,3 @@ Route::put('/tasks/edit/{task}', [TaskController::class, 'update'])->middleware(
 Route::delete('/tasks/delete/{task}', [TaskController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::get('/tasks/{task}', [TaskController::class, 'show'])->middleware('auth:sanctum');
-
-Route::get('/user/tasks/{user}', [UserController::class, 'index'])->middleware('auth:sanctum');
