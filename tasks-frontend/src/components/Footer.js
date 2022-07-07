@@ -7,7 +7,7 @@ function Footer() {
       {/* footer grid */}
       <div class=" grid grid-rows-2 gap-2 pt-1 justify-center items-center">
         {/* first row */}
-        <div class="flex flex-row flex-wrap gap-4 justify-center items-end">
+        <div class="flex flex-row flex-wrap gap-10 justify-center items-end">
           {/* logo */}
           <div href="/" class="">
             <a href="/" class="flex space-x-1 items-end">
